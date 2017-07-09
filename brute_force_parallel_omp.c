@@ -116,13 +116,6 @@ int main() {
 	printf("Insira o numero de threads: ");
 	scanf("%d", &n_threads);
 
-	int i;
-	int tamanho_intervalo = LIM_SUP_GLOBAL - LIM_INF_GLOBAL + 1;
-	char *intervalo = (char *) malloc(sizeof(char) * tamanho_intervalo);
-	for(i = 0; i < tamanho_intervalo; i++) {
-		intervalo[i] = i + LIM_INF_GLOBAL;
-	}
-
 	// Cria o array de distribuição
 	int *distribuicao = (int *) malloc(sizeof(int) * n_threads);
 	distribuicao = distribui(n_threads);
@@ -131,6 +124,7 @@ int main() {
 	char *senha = NULL; 
 	int posicoes[n_threads];
 	int soma = 0;
+	int i;
 	for(i = 0; i < n_threads; i++){
 		if(i == 0) {
 			posicoes[i] = LIM_INF_GLOBAL;
@@ -167,8 +161,6 @@ int main() {
 		str_lim_sup[strlen(objetivo)] = '\0';
 		clock_t t_inicio, t_fim;
 	    double t_total;
-
-	    printf("thread: %d\nlim_inf: %s\nlim_sup: %s\n", id, str_lim_inf, str_lim_sup);
 	     
 	    t_inicio = clock();
 
